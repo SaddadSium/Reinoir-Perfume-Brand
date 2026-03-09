@@ -145,17 +145,28 @@ export default function Shop() {
               </p>
 
               <div className="mt-auto flex flex-col items-center justify-center gap-4 w-full pt-2">
-                <div className="text-sm md:text-base font-semibold text-[#ebdcb7] font-[family-name:var(--font-playfair)] tracking-wider flex flex-col gap-1">
-                  {product.price.split(" | ").map((line, i) => (
-                    <span key={i} className="block">
-                      {line}
-                    </span>
-                  ))}
+                <div className="text-sm md:text-base text-[#ebdcb7] tracking-wider flex flex-col gap-1.5">
+                  {product.price.split(" | ").map((line, i) => {
+                    // ⚠️ FIX: Price styling in card (making ml light and price bold)
+                    const parts = line.split(" - ");
+                    return parts.length === 2 ? (
+                      <span key={i} className="block">
+                        <span className="font-light opacity-70">
+                          {parts[0]} -{" "}
+                        </span>
+                        <span className="font-semibold">{parts[1]}</span>
+                      </span>
+                    ) : (
+                      <span key={i} className="block font-semibold">
+                        {line}
+                      </span>
+                    );
+                  })}
                 </div>
 
                 <Link
                   href={`/contact?product=${encodeURIComponent(product.name)}`}
-                  className="w-auto whitespace-nowrap border border-[#c59d5f] text-[#ebdcb7] px-8 py-2.5 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-[#c59d5f] hover:text-[#240104] transition-all duration-300"
+                  className="w-auto whitespace-nowrap border border-[#c59d5f] text-[#ebdcb7] px-8 py-2.5 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-[#c59d5f] hover:text-[#240104] transition-all duration-300 mt-2"
                 >
                   Add to Cart
                 </Link>
@@ -165,7 +176,7 @@ export default function Shop() {
         ))}
       </div>
 
-      {/* MODAL SECTION WITH MOBILE FIXES */}
+      {/* MODAL SECTION */}
       {selectedProduct && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-10 bg-black/90 backdrop-blur-md transition-opacity">
           <div className="relative w-full max-w-5xl bg-gradient-to-br from-[#240104] to-[#1a0103] border border-[#c59d5f]/40 rounded-2xl shadow-[0_0_40px_rgba(197,157,95,0.2)] flex flex-col md:flex-row overflow-y-auto md:overflow-hidden animate-in fade-in zoom-in duration-300 h-[85vh] md:h-auto md:max-h-[90vh] custom-scrollbar">
@@ -191,7 +202,6 @@ export default function Shop() {
             </button>
 
             <div className="w-full md:w-1/2 relative border-b md:border-b-0 md:border-r border-[#c59d5f]/20 flex flex-col bg-[#1a0103] shrink-0">
-              {/* Image Section - Fixed height on mobile so you can scroll to see thumbs */}
               <div className="relative w-full h-[350px] md:flex-1 md:h-auto bg-[#0a0001]">
                 <img
                   src={activeImage}
@@ -201,7 +211,6 @@ export default function Shop() {
                 <div className="absolute inset-0 bg-gradient-to-t from-[#1a0103] to-transparent opacity-40 pointer-events-none"></div>
               </div>
 
-              {/* Thumbnails - Horizontally scrollable on mobile */}
               <div className="flex space-x-4 p-4 md:p-6 justify-center bg-[#1a0103] border-t border-[#c59d5f]/20 shrink-0 z-10 overflow-x-auto custom-scrollbar">
                 {selectedProduct.gallery.map((img, index) => (
                   <button
@@ -275,15 +284,28 @@ export default function Shop() {
               </div>
 
               <div className="flex flex-col sm:flex-row items-center justify-between mt-auto pt-6 border-t border-[#c59d5f]/20 gap-6 shrink-0">
-                <div className="flex flex-col items-center sm:items-start gap-1">
-                  {selectedProduct.price.split(" | ").map((line, i) => (
-                    <span
-                      key={i}
-                      className="text-lg md:text-2xl font-bold text-[#ebdcb7] font-[family-name:var(--font-playfair)] tracking-wider"
-                    >
-                      {line}
-                    </span>
-                  ))}
+                <div className="flex flex-col items-center sm:items-start gap-2">
+                  {selectedProduct.price.split(" | ").map((line, i) => {
+                    const parts = line.split(" - ");
+                    return parts.length === 2 ? (
+                      <span
+                        key={i}
+                        className="text-base md:text-lg text-[#ebdcb7] tracking-wider block"
+                      >
+                        <span className="font-light opacity-70">
+                          {parts[0]} -{" "}
+                        </span>
+                        <span className="font-bold">{parts[1]}</span>
+                      </span>
+                    ) : (
+                      <span
+                        key={i}
+                        className="text-base md:text-lg font-bold text-[#ebdcb7] tracking-wider block"
+                      >
+                        {line}
+                      </span>
+                    );
+                  })}
                 </div>
 
                 <Link
