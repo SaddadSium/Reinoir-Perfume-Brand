@@ -1,81 +1,114 @@
 "use client";
-
+import { useState } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 
 export default function Navbar() {
-  const pathname = usePathname();
-
-  const navLinks = [
-    { name: "HOME", href: "/" },
-    { name: "ABOUT", href: "/about" },
-    { name: "SHOP", href: "/shop" },
-    { name: "CONTACT", href: "/contact" },
-  ];
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
-    //Fixing Navbar
-    <div className="fixed top-0 left-0 w-full z-50 flex justify-center pt-6 px-4 pointer-events-none">
-      <nav className="pointer-events-auto flex items-center justify-between px-8 py-4 bg-black/40 backdrop-blur-xl border border-[#c59d5f]/40 rounded-full w-full max-w-5xl shadow-[0_8px_32px_rgba(0,0,0,0.5)] transition-all duration-300">
-        {/* Brand Logo */}
+    <nav className="fixed w-full z-50 bg-black/80 backdrop-blur-md border-b border-[#c59d5f]/30">
+      <div className="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
         <Link
           href="/"
-          className="flex items-center gap-3 hover:scale-105 transition-transform duration-300 drop-shadow-md"
+          className="text-2xl font-[family-name:var(--font-playfair)] text-[#c59d5f] tracking-widest font-bold drop-shadow-lg"
         >
-          {/* Logo Image */}
-          <img
-            src="/images/logo.png"
-            alt="REINOIR Logo"
-            className="h-8 md:h-10 w-auto"
-          />
-          {/* Brand Text */}
-          <span className="text-2xl md:text-3xl font-bold tracking-[0.1em] text-[#c59d5f] font-[family-name:var(--font-playfair)] hidden sm:block">
-            REINOIR
-          </span>
+          REINOIR
         </Link>
-        {/* Navigation Links */}
-        <div className="hidden md:flex space-x-10 items-center">
-          {navLinks.map((link) => {
-            const isActive = pathname === link.href;
-            return (
-              <Link
-                key={link.name}
-                href={link.href}
-                className={`relative text-sm font-bold tracking-widest transition-all duration-300 group
-                  ${isActive ? "text-[#c59d5f]" : "text-[#ebdcb7] hover:text-[#c59d5f]"}
-                `}
-              >
-                {link.name}
 
-                {/* Hover & Active Underline Animation */}
-                <span
-                  className={`absolute -bottom-2 left-1/2 h-[2px] bg-[#c59d5f] transition-all duration-300 -translate-x-1/2 shadow-[0_0_8px_rgba(197,157,95,0.8)]
-                  ${isActive ? "w-full opacity-100" : "w-0 opacity-0 group-hover:w-full group-hover:opacity-100"}
-                `}
-                ></span>
-              </Link>
-            );
-          })}
-        </div>
-
-        {/* Mobile Menu Icon */}
-        <div className="md:hidden text-[#c59d5f] cursor-pointer hover:scale-110 transition-transform">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={1.5}
-            stroke="currentColor"
-            className="w-8 h-8"
+        {/* Desktop Menu */}
+        <div className="hidden md:flex space-x-8">
+          <Link
+            href="/"
+            className="text-[#ebdcb7] hover:text-[#c59d5f] text-sm uppercase tracking-widest transition-colors font-medium"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-            />
-          </svg>
+            Home
+          </Link>
+          <Link
+            href="/about"
+            className="text-[#ebdcb7] hover:text-[#c59d5f] text-sm uppercase tracking-widest transition-colors font-medium"
+          >
+            About
+          </Link>
+          <Link
+            href="/shop"
+            className="text-[#ebdcb7] hover:text-[#c59d5f] text-sm uppercase tracking-widest transition-colors font-medium"
+          >
+            Shop
+          </Link>
+          <Link
+            href="/contact"
+            className="text-[#ebdcb7] hover:text-[#c59d5f] text-sm uppercase tracking-widest transition-colors font-medium"
+          >
+            Contact
+          </Link>
         </div>
-      </nav>
-    </div>
+
+        {/* Mobile Hamburger Icon */}
+        <button
+          className="md:hidden text-[#c59d5f] p-2"
+          onClick={() => setIsOpen(!isOpen)}
+          aria-label="Toggle Menu"
+        >
+          <svg
+            className="w-8 h-8"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            {isOpen ? (
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M6 18L18 6M6 6l12 12"
+              />
+            ) : (
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            )}
+          </svg>
+        </button>
+      </div>
+
+      {/* Mobile Menu Dropdown */}
+      {isOpen && (
+        <div className="md:hidden bg-[#1a0103] border-b border-[#c59d5f]/30 absolute w-full shadow-2xl">
+          <div className="flex flex-col px-6 py-6 space-y-6 text-center">
+            <Link
+              href="/"
+              onClick={() => setIsOpen(false)}
+              className="text-[#ebdcb7] hover:text-[#c59d5f] text-base uppercase tracking-widest font-bold"
+            >
+              Home
+            </Link>
+            <Link
+              href="/about"
+              onClick={() => setIsOpen(false)}
+              className="text-[#ebdcb7] hover:text-[#c59d5f] text-base uppercase tracking-widest font-bold"
+            >
+              About
+            </Link>
+            <Link
+              href="/shop"
+              onClick={() => setIsOpen(false)}
+              className="text-[#ebdcb7] hover:text-[#c59d5f] text-base uppercase tracking-widest font-bold"
+            >
+              Shop
+            </Link>
+            <Link
+              href="/contact"
+              onClick={() => setIsOpen(false)}
+              className="text-[#ebdcb7] hover:text-[#c59d5f] text-base uppercase tracking-widest font-bold"
+            >
+              Contact
+            </Link>
+          </div>
+        </div>
+      )}
+    </nav>
   );
 }

@@ -110,6 +110,7 @@ export default function Shop() {
 
               <button
                 onClick={() => setSelectedProduct(product)}
+                aria-label={`Quick view ${product.name}`}
                 className="absolute top-4 right-4 z-20 bg-black/50 backdrop-blur-md p-2 rounded-full text-[#ebdcb7] opacity-0 group-hover:opacity-100 border border-[#c59d5f]/50 hover:bg-[#c59d5f] hover:text-[#240104] transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 shadow-lg"
                 title="Quick View"
               >
@@ -164,12 +165,14 @@ export default function Shop() {
         ))}
       </div>
 
+      {/* MODAL SECTION WITH MOBILE FIXES */}
       {selectedProduct && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-10 bg-black/80 backdrop-blur-sm transition-opacity">
-          <div className="relative w-full max-w-5xl bg-gradient-to-br from-[#240104] to-[#1a0103] border border-[#c59d5f]/40 rounded-2xl shadow-[0_0_40px_rgba(197,157,95,0.2)] flex flex-col md:flex-row overflow-hidden animate-in fade-in zoom-in duration-300 h-auto max-h-[90vh]">
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-10 bg-black/90 backdrop-blur-md transition-opacity">
+          <div className="relative w-full max-w-5xl bg-gradient-to-br from-[#240104] to-[#1a0103] border border-[#c59d5f]/40 rounded-2xl shadow-[0_0_40px_rgba(197,157,95,0.2)] flex flex-col md:flex-row overflow-y-auto md:overflow-hidden animate-in fade-in zoom-in duration-300 h-[85vh] md:h-auto md:max-h-[90vh] custom-scrollbar">
             <button
               onClick={() => setSelectedProduct(null)}
-              className="absolute top-4 right-4 z-50 bg-black/40 hover:bg-[#c59d5f] text-[#c59d5f] hover:text-[#240104] rounded-full p-2 transition-colors border border-[#c59d5f]/30"
+              aria-label="Close details"
+              className="absolute top-4 right-4 z-50 bg-black/60 hover:bg-[#c59d5f] text-[#c59d5f] hover:text-[#240104] rounded-full p-2 transition-colors border border-[#c59d5f]/50 backdrop-blur-sm"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -177,7 +180,7 @@ export default function Shop() {
                 viewBox="0 0 24 24"
                 strokeWidth={2}
                 stroke="currentColor"
-                className="w-5 h-5"
+                className="w-6 h-6"
               >
                 <path
                   strokeLinecap="round"
@@ -187,24 +190,28 @@ export default function Shop() {
               </svg>
             </button>
 
-            <div className="w-full md:w-1/2 relative border-r border-[#c59d5f]/20 flex flex-col bg-[#1a0103] overflow-hidden">
-              <div className="relative flex-1 w-full min-h-[250px] md:min-h-0 bg-[#0a0001]">
+            <div className="w-full md:w-1/2 relative border-b md:border-b-0 md:border-r border-[#c59d5f]/20 flex flex-col bg-[#1a0103] shrink-0">
+              {/* Image Section - Fixed height on mobile so you can scroll to see thumbs */}
+              <div className="relative w-full h-[350px] md:flex-1 md:h-auto bg-[#0a0001]">
                 <img
                   src={activeImage}
                   alt={selectedProduct.name}
                   className="absolute inset-0 w-full h-full object-cover object-center"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#1a0103] to-transparent opacity-30 pointer-events-none"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-[#1a0103] to-transparent opacity-40 pointer-events-none"></div>
               </div>
-              <div className="flex space-x-4 p-4 md:p-6 justify-center bg-[#1a0103] border-t border-[#c59d5f]/20 shrink-0 z-10 relative">
+
+              {/* Thumbnails - Horizontally scrollable on mobile */}
+              <div className="flex space-x-4 p-4 md:p-6 justify-center bg-[#1a0103] border-t border-[#c59d5f]/20 shrink-0 z-10 overflow-x-auto custom-scrollbar">
                 {selectedProduct.gallery.map((img, index) => (
                   <button
                     key={index}
                     onClick={() => setActiveImage(img)}
-                    className={`relative w-16 h-16 md:w-20 md:h-20 rounded-lg overflow-hidden border-2 transition-all duration-300 ${
+                    aria-label={`View thumbnail ${index + 1}`}
+                    className={`relative w-16 h-16 md:w-20 md:h-20 shrink-0 rounded-lg overflow-hidden border-2 transition-all duration-300 ${
                       activeImage === img
                         ? "border-[#c59d5f] shadow-[0_0_10px_rgba(197,157,95,0.5)] scale-105"
-                        : "border-transparent opacity-70 hover:opacity-100"
+                        : "border-transparent opacity-60 hover:opacity-100"
                     }`}
                   >
                     <img
@@ -217,7 +224,7 @@ export default function Shop() {
               </div>
             </div>
 
-            <div className="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-start overflow-y-auto custom-scrollbar">
+            <div className="w-full md:w-1/2 p-6 md:p-12 flex flex-col justify-start md:overflow-y-auto custom-scrollbar">
               <p className="text-[#c59d5f] tracking-widest uppercase text-xs font-semibold mb-2">
                 {selectedProduct.specialty}
               </p>
@@ -227,7 +234,7 @@ export default function Shop() {
 
               <div className="w-16 h-[1px] bg-[#c59d5f]/50 mb-6 shrink-0"></div>
 
-              <p className="text-[#ebdcb7]/80 text-lg font-light leading-relaxed mb-8">
+              <p className="text-[#ebdcb7]/80 text-base md:text-lg font-light leading-relaxed mb-8">
                 {selectedProduct.description}
               </p>
 
@@ -239,19 +246,19 @@ export default function Shop() {
                 <div className="text-sm md:text-base font-light text-[#ebdcb7]/80 leading-relaxed space-y-3">
                   <p>
                     <strong className="text-[#c59d5f] font-medium tracking-wide">
-                      Top Notes, The First Impression:{" "}
+                      Top Notes:{" "}
                     </strong>
                     {selectedProduct.journey?.top}
                   </p>
                   <p>
                     <strong className="text-[#c59d5f] font-medium tracking-wide">
-                      Heart Notes, The Soul of the Scent:{" "}
+                      Heart Notes:{" "}
                     </strong>
                     {selectedProduct.journey?.heart}
                   </p>
                   <p>
                     <strong className="text-[#c59d5f] font-medium tracking-wide">
-                      Base Notes, The Lingering Memory:{" "}
+                      Base Notes:{" "}
                     </strong>
                     {selectedProduct.journey?.base}
                   </p>
@@ -267,12 +274,12 @@ export default function Shop() {
                 </p>
               </div>
 
-              <div className="flex flex-wrap items-center justify-between mt-auto pt-6 border-t border-[#c59d5f]/20 gap-4 shrink-0">
-                <div className="flex flex-col gap-1">
+              <div className="flex flex-col sm:flex-row items-center justify-between mt-auto pt-6 border-t border-[#c59d5f]/20 gap-6 shrink-0">
+                <div className="flex flex-col items-center sm:items-start gap-1">
                   {selectedProduct.price.split(" | ").map((line, i) => (
                     <span
                       key={i}
-                      className="text-xl md:text-2xl font-bold text-[#ebdcb7] font-[family-name:var(--font-playfair)] tracking-wider"
+                      className="text-lg md:text-2xl font-bold text-[#ebdcb7] font-[family-name:var(--font-playfair)] tracking-wider"
                     >
                       {line}
                     </span>
@@ -284,7 +291,7 @@ export default function Shop() {
                     selectedProduct.name,
                   )}`}
                   onClick={() => setSelectedProduct(null)}
-                  className="shrink-0 whitespace-nowrap bg-[#c59d5f] text-[#240104] px-8 py-3 rounded-full text-sm font-bold uppercase tracking-widest hover:bg-[#ebdcb7] transition-all duration-300 shadow-[0_0_15px_rgba(197,157,95,0.4)]"
+                  className="w-full sm:w-auto text-center shrink-0 bg-[#c59d5f] text-[#240104] px-8 py-3 rounded-full text-sm font-bold uppercase tracking-widest hover:bg-[#ebdcb7] transition-all duration-300 shadow-[0_0_15px_rgba(197,157,95,0.4)]"
                 >
                   Order Now
                 </Link>
