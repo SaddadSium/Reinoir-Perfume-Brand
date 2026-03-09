@@ -6,7 +6,7 @@ import Link from "next/link";
 const products = [
   {
     id: 4,
-    name: "REINIOR ELIPSE",
+    name: "REINOIR ELIPSE",
     price: "30 ml - BDT 815/- | 10 ml - BDT 285/-",
     specialty: "Sharp & Wind",
     description:
@@ -22,7 +22,7 @@ const products = [
   },
   {
     id: 1,
-    name: "REINIOR SPICE",
+    name: "REINOIR SPICE",
     price: "30 ml - BDT 780/- | 10 ml - BDT 275/-",
     specialty: "Sweet Yet Spicy",
     description:
@@ -38,7 +38,7 @@ const products = [
   },
   {
     id: 2,
-    name: "REINIOR OCEAN BLUE",
+    name: "REINOIR OCEAN BLUE",
     price: "30 ml - BDT 710/- | 10 ml - BDT 265/-",
     specialty: "Fresh & Chilled",
     description:
@@ -54,7 +54,7 @@ const products = [
   },
   {
     id: 3,
-    name: "REINIOR FLORAL",
+    name: "REINOIR FLORAL",
     price: "30 ml - BDT 710/- | 10 ml - BDT 245/-",
     specialty: "Floral & Elegant",
     description:

@@ -4,10 +4,10 @@ import { useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 
 const productList = [
-  "REINIOR SPICE",
-  "REINIOR OCEAN BLUE",
-  "REINIOR FLORAL",
-  "REINIOR ELIPSE",
+  "REINOIR ELIPSE",
+  "REINOIR SPICE",
+  "REINOIR OCEAN BLUE",
+  "REINOIR FLORAL",
 ];
 
 function OrderForm() {
