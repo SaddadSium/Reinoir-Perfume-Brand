@@ -107,11 +107,10 @@ export default function Shop() {
                 className="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700 ease-in-out"
               />
               <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500 z-10 pointer-events-none"></div>
-
               <button
                 onClick={() => setSelectedProduct(product)}
                 aria-label={`Quick view ${product.name}`}
-                className="absolute top-4 right-4 z-20 bg-black/50 backdrop-blur-md p-2 rounded-full text-[#ebdcb7] opacity-0 group-hover:opacity-100 border border-[#c59d5f]/50 hover:bg-[#c59d5f] hover:text-[#240104] transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 shadow-lg"
+                className="absolute top-4 right-4 z-20 bg-black/50 backdrop-blur-md p-2 rounded-full text-[#ebdcb7] opacity-100 translate-y-0 md:opacity-0 md:translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 border border-[#c59d5f]/50 hover:bg-[#c59d5f] hover:text-[#240104] transition-all duration-300 shadow-lg"
                 title="Quick View"
               >
                 <svg
@@ -147,7 +146,6 @@ export default function Shop() {
               <div className="mt-auto flex flex-col items-center justify-center gap-4 w-full pt-2">
                 <div className="text-sm md:text-base text-[#ebdcb7] tracking-wider flex flex-col gap-1.5">
                   {product.price.split(" | ").map((line, i) => {
-                    // ⚠️ FIX: Price styling in card (making ml light and price bold)
                     const parts = line.split(" - ");
                     return parts.length === 2 ? (
                       <span key={i} className="block">
