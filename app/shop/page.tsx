@@ -2,11 +2,12 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image"; // ⚠️ Image optimization import
 
 const products = [
   {
     id: 4,
-    name: "REINOIR ELIPSE",
+    name: "REINIOR ELIPSE",
     price: "30 ml - BDT 815/- | 10 ml - BDT 285/-",
     specialty: "Sharp & Wind",
     description:
@@ -22,7 +23,7 @@ const products = [
   },
   {
     id: 1,
-    name: "REINOIR SPICE",
+    name: "REINIOR SPICE",
     price: "30 ml - BDT 780/- | 10 ml - BDT 275/-",
     specialty: "Sweet Yet Spicy",
     description:
@@ -38,7 +39,7 @@ const products = [
   },
   {
     id: 2,
-    name: "REINOIR OCEAN BLUE",
+    name: "REINIOR OCEAN BLUE",
     price: "30 ml - BDT 710/- | 10 ml - BDT 265/-",
     specialty: "Fresh & Chilled",
     description:
@@ -54,7 +55,7 @@ const products = [
   },
   {
     id: 3,
-    name: "REINOIR FLORAL",
+    name: "REINIOR FLORAL",
     price: "30 ml - BDT 710/- | 10 ml - BDT 245/-",
     specialty: "Floral & Elegant",
     description:
@@ -100,13 +101,17 @@ export default function Shop() {
             key={product.id}
             className="group relative flex flex-col bg-black/20 backdrop-blur-md border border-[#c59d5f]/30 rounded-xl overflow-hidden shadow-xl hover:shadow-[0_10px_30px_rgba(197,157,95,0.15)] hover:-translate-y-2 transition-all duration-500"
           >
+            {/* ⚠️ Optimized Card Image Container */}
             <div className="relative w-full aspect-square overflow-hidden border-b border-[#c59d5f]/30 bg-[#1a0103]">
-              <img
+              <Image
                 src={product.image}
                 alt={product.name}
-                className="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700 ease-in-out"
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                className="object-cover object-center group-hover:scale-110 transition-transform duration-700 ease-in-out"
               />
               <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500 z-10 pointer-events-none"></div>
+
               <button
                 onClick={() => setSelectedProduct(product)}
                 aria-label={`Quick view ${product.name}`}
@@ -200,15 +205,19 @@ export default function Shop() {
             </button>
 
             <div className="w-full md:w-1/2 relative border-b md:border-b-0 md:border-r border-[#c59d5f]/20 flex flex-col bg-[#1a0103] shrink-0">
+              {/* ⚠️ Optimized Modal Main Image */}
               <div className="relative w-full h-[350px] md:flex-1 md:h-auto bg-[#0a0001]">
-                <img
+                <Image
                   src={activeImage}
                   alt={selectedProduct.name}
-                  className="absolute inset-0 w-full h-full object-cover object-center"
+                  fill
+                  priority // Eager load modal image
+                  className="object-cover object-center"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#1a0103] to-transparent opacity-40 pointer-events-none"></div>
               </div>
 
+              {/* Thumbnails */}
               <div className="flex space-x-4 p-4 md:p-6 justify-center bg-[#1a0103] border-t border-[#c59d5f]/20 shrink-0 z-10 overflow-x-auto custom-scrollbar">
                 {selectedProduct.gallery.map((img, index) => (
                   <button
@@ -221,10 +230,11 @@ export default function Shop() {
                         : "border-transparent opacity-60 hover:opacity-100"
                     }`}
                   >
-                    <img
+                    <Image
                       src={img}
                       alt={`thumbnail-${index}`}
-                      className="w-full h-full object-cover"
+                      fill
+                      className="object-cover"
                     />
                   </button>
                 ))}

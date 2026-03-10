@@ -1,37 +1,38 @@
 "use client";
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 const specialProducts = [
   {
     id: 1,
     name: "REINOIR COLLECTION",
     desc: "Explore The Luxury In Presence",
-    image: "/images/c1.png",
+    image: "/images/c1.jpg",
   },
   {
     id: 2,
     name: "REINOIR SPICE",
     desc: " The Proprietary signature, The Golden Hour of ‘Power’ Fragrance.",
-    image: "/images/c2.png",
+    image: "/images/c2.jpg",
   },
   {
     id: 3,
     name: "REINOIR OCEAN BLUE",
     desc: "Infinite Horizons where the salty sea air meets the warmth of sun-drenched fruit trees.",
-    image: "/images/c5.png",
+    image: "/images/c5.jpg",
   },
   {
     id: 4,
     name: "REINOIR ECLIPSE",
     desc: "Wildly Refined, A magnetic signature for the modern masculinity.",
-    image: "/images/c4.png",
+    image: "/images/c4.jpg",
   },
   {
     id: 5,
-    name: "REINOIR FLORAL",
+    name: "REINIOR FLORAL",
     desc: "A velvet-soft bouquet that feels alive. The Grace Fragrance for REINOIR Elite Ladies.",
-    image: "/images/c3.png",
+    image: "/images/c3.jpg",
   },
 ];
 
@@ -47,8 +48,7 @@ export default function Home() {
 
   return (
     <main className="w-full flex flex-col items-center min-h-screen px-4 md:px-8 pt-32 lg:pt-40 pb-10">
-      {/* Hero Slider Section */}
-      <div className="relative w-full max-w-7xl h-[65vh] md:h-[80vh] rounded-3xl overflow-hidden shadow-[0_10px_40px_rgba(0,0,0,0.8)] border border-[#c59d5f]/20">
+      <div className="relative w-full max-w-7xl h-[65vh] md:h-[80vh] rounded-3xl overflow-hidden shadow-[0_10px_40px_rgba(0,0,0,0.8)] border border-[#c59d5f]/20 bg-black">
         {specialProducts.map((product, index) => (
           <div
             key={product.id}
@@ -56,18 +56,22 @@ export default function Home() {
               index === currentIndex ? "opacity-100 z-10" : "opacity-0 z-0"
             }`}
           >
-            <img
+            <Image
               src={product.image}
               alt={product.name}
-              className="w-full h-full object-cover object-center"
+              fill
+              className="object-cover object-center"
+              priority={index === 0}
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1280px"
+              quality={85}
             />
-            <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-[#1a0103]/90 via-[#1a0103]/50 to-transparent flex flex-col justify-end md:justify-center px-8 md:px-20 pb-28 md:pb-0 text-left">
+
+            <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-[#1a0103]/90 via-[#1a0103]/50 to-transparent flex flex-col justify-end md:justify-center px-8 md:px-20 pb-28 md:pb-0 text-left z-20">
               <div className="max-w-xl">
                 <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-4 tracking-[0.15em] uppercase text-[#c59d5f] font-[family-name:var(--font-playfair)] drop-shadow-2xl">
                   {product.name}
                 </h2>
 
-                {/* Elegant golden divider line */}
                 <div className="w-16 h-[2px] bg-[#c59d5f]/70 mb-6"></div>
 
                 <p className="text-base md:text-xl mb-10 font-light text-[#ebdcb7]/90 drop-shadow-md tracking-widest leading-relaxed">
@@ -86,7 +90,7 @@ export default function Home() {
         ))}
 
         {/* Golden Dots for Slider */}
-        <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-4 z-20">
+        <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-4 z-30">
           {specialProducts.map((_, index) => (
             <button
               key={index}
@@ -104,7 +108,6 @@ export default function Home() {
 
       {/* Brand Identity Section */}
       <section className="w-full max-w-4xl mx-auto mt-28 mb-16 px-6 text-center flex flex-col items-center justify-center space-y-12">
-        {/* Brand Slogan */}
         <div className="space-y-4">
           <p className="text-[#c59d5f] text-xs md:text-sm font-bold tracking-[0.3em] uppercase">
             Brand Slogan
@@ -114,10 +117,8 @@ export default function Home() {
           </h2>
         </div>
 
-        {/* Fading Golden Divider */}
         <div className="w-32 h-[1px] bg-gradient-to-r from-transparent via-[#c59d5f] to-transparent opacity-60"></div>
 
-        {/* Aesthetic Identity */}
         <div className="space-y-4">
           <p className="text-[#c59d5f] text-xs md:text-sm font-bold tracking-[0.3em] uppercase">
             Aesthetic Identity
