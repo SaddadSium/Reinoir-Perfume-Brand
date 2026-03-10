@@ -63,7 +63,7 @@ export default function Home() {
               className="object-cover object-center"
               priority={index === 0}
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1280px"
-              quality={85}
+              quality={100}
             />
 
             <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-[#1a0103]/90 via-[#1a0103]/50 to-transparent flex flex-col justify-end md:justify-center px-8 md:px-20 pb-28 md:pb-0 text-left z-20">
