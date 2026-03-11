@@ -13,25 +13,25 @@ const specialProducts = [
   {
     id: 2,
     name: "REINOIR SPICE",
-    desc: " The Proprietary signature, The Golden Hour of ‘Power’ Fragrance.",
+    desc: "The Proprietary signature.",
     image: "/images/c2.jpg",
   },
   {
     id: 3,
     name: "REINOIR OCEAN BLUE",
-    desc: "Infinite Horizons where the salty sea air meets the warmth of sun-drenched fruit trees.",
+    desc: "Infinite Horizons.",
     image: "/images/c5.jpg",
   },
   {
     id: 4,
     name: "REINOIR ECLIPSE",
-    desc: "Wildly Refined, A magnetic signature for the modern masculinity.",
+    desc: "Wildly Refined.",
     image: "/images/c4.jpg",
   },
   {
     id: 5,
     name: "REINIOR FLORAL",
-    desc: "A velvet-soft bouquet that feels alive. The Grace Fragrance for REINOIR Elite Ladies.",
+    desc: "A velvet-soft bouquet.",
     image: "/images/c3.jpg",
   },
 ];
@@ -56,14 +56,16 @@ export default function Home() {
               index === currentIndex ? "opacity-100 z-10" : "opacity-0 z-0"
             }`}
           >
+            {/* ⚠️ Fixed for Mobile Quality */}
             <Image
               src={product.image}
               alt={product.name}
               fill
               className="object-cover object-center"
               priority={index === 0}
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1280px"
               quality={100}
+              unoptimized={true}
+              sizes="100vw"
             />
 
             <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-[#1a0103]/90 via-[#1a0103]/50 to-transparent flex flex-col justify-end md:justify-center px-8 md:px-20 pb-28 md:pb-0 text-left z-20">
@@ -71,13 +73,10 @@ export default function Home() {
                 <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-4 tracking-[0.15em] uppercase text-[#c59d5f] font-[family-name:var(--font-playfair)] drop-shadow-2xl">
                   {product.name}
                 </h2>
-
                 <div className="w-16 h-[2px] bg-[#c59d5f]/70 mb-6"></div>
-
                 <p className="text-base md:text-xl mb-10 font-light text-[#ebdcb7]/90 drop-shadow-md tracking-widest leading-relaxed">
                   {product.desc}
                 </p>
-
                 <Link
                   href="/shop"
                   className="inline-block border border-[#c59d5f] text-[#ebdcb7] bg-black/20 backdrop-blur-sm px-10 py-4 rounded-full font-bold tracking-widest hover:bg-[#c59d5f] hover:text-[#240104] transition-all duration-500 uppercase text-xs md:text-sm"
@@ -89,13 +88,11 @@ export default function Home() {
           </div>
         ))}
 
-        {/* Golden Dots for Slider */}
         <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-4 z-30">
           {specialProducts.map((_, index) => (
             <button
               key={index}
               onClick={() => setCurrentIndex(index)}
-              aria-label={`Go to slide ${index + 1}`}
               className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
                 index === currentIndex
                   ? "bg-[#c59d5f] w-8"
@@ -107,27 +104,17 @@ export default function Home() {
       </div>
 
       {/* Brand Identity Section */}
-      <section className="w-full max-w-4xl mx-auto mt-28 mb-16 px-6 text-center flex flex-col items-center justify-center space-y-12">
-        <div className="space-y-4">
-          <p className="text-[#c59d5f] text-xs md:text-sm font-bold tracking-[0.3em] uppercase">
-            Brand Slogan
-          </p>
-          <h2 className="text-4xl md:text-6xl text-[#ebdcb7] font-[family-name:var(--font-playfair)] italic tracking-wide drop-shadow-md">
-            "Luxury in Presence."
-          </h2>
-        </div>
-
+      <section className="w-full max-w-4xl mx-auto mt-28 mb-16 px-6 text-center flex flex-col items-center justify-center space-y-12 text-[#ebdcb7]">
+        <p className="text-[#c59d5f] text-xs md:text-sm font-bold tracking-[0.3em] uppercase">
+          Brand Slogan
+        </p>
+        <h2 className="text-4xl md:text-6xl font-[family-name:var(--font-playfair)] italic tracking-wide">
+          "Luxury in Presence."
+        </h2>
         <div className="w-32 h-[1px] bg-gradient-to-r from-transparent via-[#c59d5f] to-transparent opacity-60"></div>
-
-        <div className="space-y-4">
-          <p className="text-[#c59d5f] text-xs md:text-sm font-bold tracking-[0.3em] uppercase">
-            Aesthetic Identity
-          </p>
-          <p className="text-lg md:text-2xl text-[#ebdcb7]/80 font-light tracking-widest leading-relaxed uppercase">
-            Minimalist, high-contrast, <br className="hidden md:block" /> and
-            deeply sophisticated.
-          </p>
-        </div>
+        <p className="text-lg md:text-2xl font-light tracking-widest uppercase opacity-80">
+          Minimalist, high-contrast, and deeply sophisticated.
+        </p>
       </section>
     </main>
   );
