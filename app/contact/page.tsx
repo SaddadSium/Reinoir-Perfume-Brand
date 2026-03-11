@@ -103,9 +103,21 @@ function OrderForm() {
           id="phone"
           name="Phone"
           required
+          pattern="[0-9]{11}"
+          minLength={11}
+          maxLength={11}
+          onInvalid={(e) =>
+            (e.target as HTMLInputElement).setCustomValidity(
+              "Please enter exactly 11 digits.",
+            )
+          }
+          onInput={(e) => (e.target as HTMLInputElement).setCustomValidity("")}
           className="w-full bg-black/30 border border-[#c59d5f]/30 rounded-lg px-4 py-3 text-[#ebdcb7] placeholder-[#ebdcb7]/30 focus:outline-none focus:border-[#c59d5f] focus:ring-1 focus:ring-[#c59d5f] transition-all"
-          placeholder="+880 1..."
+          placeholder="017XXXXXXXX"
         />
+        <p className="mt-1 text-[10px] text-[#c59d5f]/60 italic tracking-wider">
+          * Must be exactly 11 digits.
+        </p>
       </div>
 
       <div>
