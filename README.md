@@ -1,36 +1,63 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# REINOIR – Luxury Fragrance E-commerce Website
 
-## Getting Started
+**REINOIR** is a premium, minimalist e-commerce platform designed for a luxury perfume brand. Built with modern web technologies, it focuses on high-performance, aesthetic UI/UX, and a seamless ordering experience.
 
-First, run the development server:
+## ✨ Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Luxury UI/UX:** Minimalist "Glassmorphism" design with premium typography (Playfair Display).
+- **Fully Responsive:** Optimized for Mobile, Tablet, and Desktop with custom navigation and interactive elements.
+- **Dynamic Product Showcase:** Interactive product modals with image galleries for an immersive shopping experience.
+- **Optimized Performance:** Built with Next.js for lightning-fast loading speeds and SEO optimization.
+- **Automated Order System:** Custom order form integrated with Google Sheets API for real-time order tracking.
+- **High-Quality Visuals:** Image optimization using `next/image` to ensure high resolution with low loading times.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🛠️ Tech Stack
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Frontend:** [Next.js](https://nextjs.org/) (App Router), [React](https://reactjs.org/)
+- **Styling:** [Tailwind CSS](https://tailwindcss.com/)
+- **Deployment:** [Vercel](https://vercel.com/)
+- **Database/Backend:** Google Sheets API (for order management)
+- **Version Control:** [Git & GitHub](https://github.com/)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🚀 Getting Started
 
-## Learn More
+To run this project locally, follow these steps:
 
-To learn more about Next.js, take a look at the following resources:
+1.  **Clone the repository:**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+    ```bash
+    git clone [https://github.com/SaddadSium/Reinoir-Perfume-Brand.git](https://github.com/SaddadSium/Reinoir-Perfume-Brand.git)
+    ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+2.  **Install dependencies:**
 
-## Deploy on Vercel
+    ```bash
+    npm install
+    ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+3.  **Run the development server:**
+    ```bash
+    npm run dev
+    ```
+    Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📁 Project Structure
+
+- `/app`: Contains all pages (Home, About, Shop, Contact).
+- `/components`: Reusable UI components like Navbar and Footer.
+- `/public`: Static assets including optimized luxury perfume images.
+
+## 📄 Quotation & Documentation
+
+Detailed project quotations for both Global and Local markets are available in the documentation folder. The project was valued at **$950.00 (Global Standard)**.
+
+## 👨‍💻 Developer
+
+**A.S.M. Sium**
+
+- Web Developer, Digital Creator and Professional Photographer.
+- Based in Dhaka, Bangladesh.
+
+---
+
+© 2026 REINOIR. All Rights Reserved. Developed by A.S.M. Sium.
