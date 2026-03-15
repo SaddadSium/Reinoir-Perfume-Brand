@@ -4,7 +4,7 @@ import { useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 
 const productList = [
-  "REINOIR ELIPSE",
+  "REINOIR ECLIPSE",
   "REINOIR SPICE",
   "REINOIR OCEAN BLUE",
   "REINOIR FLORAL",
