@@ -8,7 +8,7 @@ const products = [
   {
     id: 4,
     name: "REINOIR ECLIPSE",
-    price: "30 ml - BDT 815/- | 10 ml - BDT 285/-",
+    price: "30 ml - BDT 820/- | 10 ml - BDT 300/-",
     specialty: "Sharp & Wind",
     description:
       "A burst of peppery freshness that feels like a clean slate. It is the scent of a man who is grounded but possesses an untamed spirit.",
@@ -24,7 +24,7 @@ const products = [
   {
     id: 1,
     name: "REINOIR SPICE",
-    price: "30 ml - BDT 780/- | 10 ml - BDT 275/-",
+    price: "30 ml - BDT 820/- | 10 ml - BDT 320/-",
     specialty: "Sweet Yet Spicy",
     description:
       "The scent of a deal being closed. A luminous trail of gold and smoke. For those who leave an impression before they say a word.",
@@ -40,7 +40,7 @@ const products = [
   {
     id: 2,
     name: "REINOIR OCEAN BLUE",
-    price: "30 ml - BDT 710/- | 10 ml - BDT 265/-",
+    price: "30 ml - BDT 750/- | 10 ml - BDT 300/-",
     specialty: "Fresh & Chilled",
     description:
       " A deep dive into the Ocean. The scent of a sun-drenched escape, bottled. A nostalgic yet timeless aquatic scent that focuses on deep sea freshness and citrus",
@@ -56,7 +56,7 @@ const products = [
   {
     id: 3,
     name: "REINOIR FLORAL",
-    price: "30 ml - BDT 710/- | 10 ml - BDT 245/-",
+    price: "30 ml - BDT 750/- | 10 ml - BDT 300/-",
     specialty: "Floral & Elegant",
     description:
       "Dew-covered petals and creamy sandalwood. An optimistic, passionate and romantic embrace that lingers like a soft memory.",
